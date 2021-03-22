@@ -7,35 +7,46 @@ import Nav from '../navbars/HomeNav';
 import axios from 'axios';
 
 const AddBanner = () => {
-  const [formData, setFormData] = useState({
-    file: null,
-    category: '',
-  });
-
-  const { file, category } = formData;
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('Choose File');
+  const [category, setCategory] = useState('');
+  const [message, setMessage] = useState('');
 
   const [redirect, setRediect] = useState(false);
 
   const handleFile = (e) => {
-    let file = e.target.files;
-
-    setFormData({ file });
-  };
-  const handleUpload = (e) => {
-    console.log(file);
-    axios({
-      url: `https://petswonder.co.in/petswonder/api/uploadBanner?content=${category}`,
-      method: 'POST',
-      data: file,
-    }).then();
-    setFormData({ file: null, category: '' });
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
   };
 
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) => {
+    setCategory(e.target.value);
+  };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const res = await axios.post(
+        `https://petswonder.co.in/petswonder/api/uploadBanner?content=${category}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log(res.data);
+      setMessage('File Uploaded');
+    } catch (err) {
+      if (err.response.status === 500) {
+        setMessage('There was a problem with a server');
+      } else {
+        setMessage(err.response);
+      }
+    }
   };
 
   const redirectTo = () => {
@@ -49,21 +60,33 @@ const AddBanner = () => {
       <br />
       <Heading text='Add new Banners' />
       <br />
-      <form className='form'>
+      {message ? (
+        <div
+          class='alert alert-warning alert-dismissible fade show'
+          role='alert'
+        >
+          {message}
+        </div>
+      ) : null}
+      <form className='form' onSubmit={onSubmit}>
         <div className='row'>
           <div className='form-group row col-md-6'>
             <label htmlFor='' className='col-sm-12 control-label'>
-              Select File
+              Select files
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 custom-file'>
               <input
-                className='ml-1 col-md-12'
+                className='ml-1 col-md-12 custom-file-input'
+                id='customFile'
                 type='file'
                 multiple
-                name='file'
-                onChange={(e) => handleFile(e)}
+                name='files'
+                onChange={handleFile}
                 required
               />
+              <label className='custom-file-label' htmlFor='customFile'>
+                {filename}
+              </label>
             </div>
           </div>
           <div className='form-group row col-md-6'>
@@ -75,7 +98,7 @@ const AddBanner = () => {
                 className='ml-1 col-md-12'
                 name='category'
                 value={category}
-                onChange={(e) => onChange(e)}
+                onChange={onChange}
                 required
               >
                 <option value='0'>* Select category</option>
@@ -86,14 +109,11 @@ const AddBanner = () => {
           </div>
         </div>
 
-        <button
-          type='button'
-          onClick={(e) => handleUpload(e)}
+        <input
+          type='submit'
+          value='Upload'
           className='btn btn-warning btn-md my-1 mr-3'
-        >
-          {' '}
-          Upload{' '}
-        </button>
+        />
         <Link className='btn btn-light my-1 btn-md btn-dark' to='/'>
           Go Back
         </Link>
