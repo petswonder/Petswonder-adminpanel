@@ -13,6 +13,7 @@ import ViewOrder from './ViewOrder.js';
 import EditProduct from './EditProduct.js';
 import Home from './home/Home.js';
 import AddBanner from './home/AddBanner';
+import DeleteBanner from './home/DeleteBanner';
 import AddService from './services/AddService';
 import EditService from './services/EditService';
 import AddVet from './services/AddVet';
@@ -24,6 +25,7 @@ const Routings = () => {
         <Header />
         <Route exact path='/' component={AddBanner} />
         <Route exact path='/addbanner' component={AddBanner} />
+        <Route exact path='/deletebanner' component={DeleteBanner} />
         <Route exact path='/services' component={AddService} />
         <Route exact path='/services/addService' component={AddService} />
         <Route exact path='/services/editService' component={EditService} />

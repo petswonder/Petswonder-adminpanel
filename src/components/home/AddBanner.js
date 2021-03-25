@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { addProduct } from '../api';
 import '../App.css';
 import Heading from '../Heading';
 import Nav from '../navbars/HomeNav';
@@ -102,8 +101,8 @@ const AddBanner = () => {
                 required
               >
                 <option value='0'>* Select category</option>
-                <option value='Home'>Home</option>
-                <option value='Shop'>Shop</option>
+                <option value='home'>home</option>
+                <option value='shopping'>shopping</option>
               </select>
             </div>
           </div>

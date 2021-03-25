@@ -21,8 +21,8 @@ const Nav = () => {
           <Link className='nav-link text-nav pl-5 pr-4' to='/addbanner'>
             Add Banners
           </Link>
-          <Link className='nav-link text-nav pr-4 ' to='/editbanner'>
-            Edit Banners
+          <Link className='nav-link text-nav pr-4 ' to='/deletebanner'>
+            Delete Banner
           </Link>
         </div>
       </div>

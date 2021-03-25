@@ -1,6 +1,6 @@
 export const addProduct = (formData) => {
   return fetch(
-    `https://petswonder.co.in/petswonder/api/productUpload/saveProduct?title=${formData.title}&sellerNumber=${formData.sellerNumber}&description=${formData.description}&price=${formData.price}&discount=${formData.discount}&inventory=${formData.inventory}&species=${formData.species}&category=${formData.category}&productId=${formData.productId}&plusPoints=${formData.plusPoints}&brand=${formData.brand}`,
+    `https://petswonder.co.in/petswonder/api/productUpload/saveProduct?title=${formData.title}&sellerNumber=&description=${formData.description}&price=${formData.price}&discount=${formData.discount}&inventory=${formData.inventory}&species=${formData.species}&category=${formData.category}&productId=${formData.productId}&plusPoints=${formData.plusPoints}&brand=${formData.brand}`,
     {
       method: 'POST',
       headers: {
