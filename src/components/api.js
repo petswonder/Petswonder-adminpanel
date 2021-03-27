@@ -1,21 +1,21 @@
-export const addProduct = (formData) => {
-  return fetch(
-    `https://petswonder.co.in/petswonder/api/productUpload/saveProduct?title=${formData.title}&sellerNumber=&description=${formData.description}&price=${formData.price}&discount=${formData.discount}&inventory=${formData.inventory}&species=${formData.species}&category=${formData.category}&productId=${formData.productId}&plusPoints=${formData.plusPoints}&brand=${formData.brand}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    }
-  )
-    .then((response) => {
-      return response.json();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+// export const addProduct = (formData) => {
+//   return fetch(
+//     `https://petswonder.co.in/petswonder/api/productUpload/saveProduct?title=${formData.title}&sellerNumber=&description=${formData.description}&price=${formData.price}&discount=${formData.discount}&inventory=${formData.inventory}&species=${formData.species}&category=${formData.category}&productId=${formData.productId}&plusPoints=${formData.plusPoints}&brand=${formData.brand}`,
+//     {
+//       method: 'POST',
+//       headers: {
+//         'Content-type': 'application/json',
+//       },
+//       body: JSON.stringify(formData),
+//     }
+//   )
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
 
 export const getOrders = () => {
   return fetch(

@@ -4,11 +4,12 @@ import { addProduct } from './api';
 import './App.css';
 import Heading from './Heading';
 import Shopping from './Shopping';
+import axios from 'axios';
 
 const ProductPanel = () => {
   const [formData, setFormData] = useState({
     title: '',
-    sellerNumber: '',
+    sellerNumber: '123456789',
     description: '',
     price: '',
     discount: '',
@@ -20,6 +21,9 @@ const ProductPanel = () => {
     brand: '',
     image: null,
   });
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('Choose File');
+  const [message, setMessage] = useState('');
 
   const {
     title,
@@ -37,18 +41,37 @@ const ProductPanel = () => {
 
   const [redirect, setRediect] = useState(false);
 
+  const handleFile = (e) => {
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    addProduct(formData)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const Data = new FormData();
+    Data.append('file', file);
+    try {
+      const res = await axios.post(
+        `https://petswonder.co.in/petswonder/api/productUpload/saveProduct?title=${title}&sellerNumber=${sellerNumber}&description=${description}&price=${price}&discount=${discount}&inventory=${inventory}&species=${species}&category=${category}&productId=${productId}&plusPoints=${plusPoints}&brand=${brand}`,
+        Data,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log(res.data);
+      setMessage('Product added');
+    } catch (err) {
+      if (err.response.status === 500) {
+        setMessage('There was a problem with a server');
+      } else {
+        setMessage(err.response);
+      }
+    }
   };
 
   const redirectTo = () => {
@@ -62,6 +85,14 @@ const ProductPanel = () => {
       <br />
       <Heading text='Add a new Product' />
       <br />
+      {message ? (
+        <div
+          class='alert alert-warning alert-dismissible fade show'
+          role='alert'
+        >
+          {message}
+        </div>
+      ) : null}
       <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='row'>
           <div className='form-group row col-md-6'>
@@ -80,12 +111,32 @@ const ProductPanel = () => {
               />
             </div>
           </div>
+
           <div className='form-group row col-md-6'>
             <label htmlFor='' className='col-sm-12 control-label'>
               Seller Number
             </label>
             <div class='col-sm-9 controls'>
               <p className='text-muted ml-2'>123456789</p>
+            </div>
+          </div>
+          <div className='form-group row col-md-6'>
+            <label htmlFor='' className='col-sm-12 control-label'>
+              Select files
+            </label>
+            <div className='col-sm-9 custom-file'>
+              <input
+                className='ml-1 col-md-12 custom-file-input'
+                id='customFile'
+                type='file'
+                multiple
+                name='files'
+                onChange={handleFile}
+                required
+              />
+              <label className='custom-file-label' htmlFor='customFile'>
+                {filename}
+              </label>
             </div>
           </div>
           <div className='form-group row col-md-6'>
