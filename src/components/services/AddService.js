@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import '../App.css';
@@ -5,18 +6,17 @@ import Heading from '../Heading';
 import Nav from '../navbars/ServiceNav';
 
 const AddService = () => {
+  const [message, setMessage] = useState('');
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('Choose File');
   const [formData, setFormData] = useState({
     title: '',
-    sellerNumber: '',
+    sellerNumber: '9959183841',
     description: '',
     price: '',
     discount: '',
     inventory: '',
-    species: '',
-    category: '',
-    productId: '',
-    plusPoints: '',
-    brand: '',
+    serviceType: '',
     image: null,
   });
 
@@ -27,11 +27,7 @@ const AddService = () => {
     price,
     discount,
     inventory,
-    species,
-    category,
-    productId,
-    plusPoints,
-    brand,
+    serviceType,
   } = formData;
 
   const [redirect, setRediect] = useState(false);
@@ -39,12 +35,37 @@ const AddService = () => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    const Data = new FormData();
+    Data.append('file', file);
+    try {
+      const res = await axios.post(
+        `https://petswonder.co.in/petswonder/api/postService/saveService?title=${title}&sellerNumber=${sellerNumber}&description=${description}&price=${price}&discount=${discount}&inventory=${inventory}&serviceType=${serviceType}`,
+        Data,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log(res.data);
+      setMessage('Service added');
+    } catch (err) {
+      if (err.response.status === 500) {
+        setMessage('There was a problem with a server');
+      } else {
+        setMessage(err.response);
+      }
+    }
   };
 
   const redirectTo = () => {
     return redirect && <Redirect to='/' />;
+  };
+  const handleFile = (e) => {
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
   };
 
   return (
@@ -54,6 +75,14 @@ const AddService = () => {
       <br />
       <Heading text='Add a new Service' />
       <br />
+      {message ? (
+        <div
+          class='alert alert-warning alert-dismissible fade show'
+          role='alert'
+        >
+          {message}
+        </div>
+      ) : null}
       <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='row'>
           <div className='form-group row col-md-6'>
@@ -77,7 +106,26 @@ const AddService = () => {
               Seller Number
             </label>
             <div class='col-sm-9 controls'>
-              <p className='text-muted ml-2'>123456789</p>
+              <p className='text-muted ml-2'>9959183841</p>
+            </div>
+          </div>
+          <div className='form-group row col-md-6'>
+            <label htmlFor='' className='col-sm-12 control-label'>
+              Select files
+            </label>
+            <div className='col-sm-9 ml-2 custom-file'>
+              <input
+                className='ml-1 col-md-12 custom-file-input'
+                id='customFile'
+                type='file'
+                multiple
+                name='files'
+                onChange={handleFile}
+                required
+              />
+              <label className='custom-file-label' htmlFor='customFile'>
+                {filename}
+              </label>
             </div>
           </div>
           <div className='form-group row col-md-6'>
@@ -146,92 +194,18 @@ const AddService = () => {
           </div>
           <div className='form-group row col-md-6'>
             <label htmlFor='' className='col-sm-12 control-label'>
-              Species
+              Service-type
             </label>
             <div class='col-sm-9 controls'>
               <select
                 className='ml-1 col-md-12'
-                name='species'
-                value={species}
+                name='serviceType'
+                value={serviceType}
                 onChange={(e) => onChange(e)}
               >
-                <option value='0'>* Select species</option>
-                <option value='Dog'>Dog</option>
-                <option value='Cat'>Cat</option>
-                <option value='Fish'>Fish</option>
-                <option value='Horse'>Horse</option>
-                <option value='Rabbit'>Rabbit</option>
+                <option value='0'>* Select Service-type</option>
+                <option value='Dog'>Doctor</option>
               </select>
-            </div>
-          </div>
-          <div className='form-group row col-md-6'>
-            <label htmlFor='' className='col-sm-12 control-label'>
-              Category
-            </label>
-            <div class='col-sm-9 controls'>
-              <select
-                className='ml-1 col-md-12'
-                name='category'
-                value={category}
-                onChange={(e) => onChange(e)}
-                required
-              >
-                <option value='0'>* Select category</option>
-                <option value='Food'>Dry-Food</option>
-                <option value='Food'>Wet-Food</option>
-                <option value='PetCare'>PetCare</option>
-                <option value='Accessories'>Accessories</option>
-                <option value='Toys'>Toys</option>
-                <option value='Gifts'>Gifts</option>
-              </select>
-            </div>
-          </div>
-          <div className='form-group row col-md-6'>
-            <label htmlFor='' className='col-sm-12 control-label'>
-              Product Id
-            </label>
-            <div class='col-sm-9 controls'>
-              <input
-                className='ml-1 col-md-12'
-                type='text'
-                placeholder='productId'
-                name='productId'
-                value={productId}
-                onChange={(e) => onChange(e)}
-                required
-              />
-            </div>
-          </div>
-          <div className='form-group row col-md-6'>
-            <label htmlFor='' className='col-sm-12 control-label'>
-              Plus Points
-            </label>
-            <div class='col-sm-9 controls'>
-              <input
-                className='ml-1 col-md-12'
-                type='number'
-                placeholder='plusPoints'
-                name='plusPoints'
-                value={plusPoints}
-                onChange={(e) => onChange(e)}
-                required
-              />
-            </div>
-          </div>
-          <div className='form-group row col-md-6'>
-            <label htmlFor='' className='col-sm-12 control-label'>
-              Brand
-            </label>
-            <div class='col-sm-9 controls'>
-              <input
-                className='ml-1 col-md-12'
-                type='text'
-                placeholder='Brand'
-                name='brand'
-                value={brand}
-                onChange={(e) => onChange(e)}
-                required
-              />
             </div>
           </div>
         </div>

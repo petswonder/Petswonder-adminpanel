@@ -1,22 +1,26 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import '../App.css';
 import Heading from '../Heading';
 import Nav from '../navbars/ServiceNav';
 
-const AddVet = () => {
+const AddService = () => {
+  const [message, setMessage] = useState('');
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('Choose File');
   const [formData, setFormData] = useState({
     title: '',
-    sellerNumber: '',
+    sellerNumber: '9959183841',
     description: '',
     price: '',
     discount: '',
     inventory: '',
+
     species: '',
     category: '',
-    productId: '',
-    plusPoints: '',
-    brand: '',
+    serviceId: '',
+    doctorNumber: '',
     image: null,
   });
 
@@ -27,11 +31,10 @@ const AddVet = () => {
     price,
     discount,
     inventory,
+    doctorNumber,
     species,
     category,
-    productId,
-    plusPoints,
-    brand,
+    serviceId,
   } = formData;
 
   const [redirect, setRediect] = useState(false);
@@ -39,12 +42,37 @@ const AddVet = () => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    const Data = new FormData();
+    Data.append('file', file);
+    try {
+      const res = await axios.post(
+        `https://petswonder.co.in/petswonder/api/doctor/saveDoctorInfo?title=${title}&sellerNumber=${sellerNumber}&description=${description}&price=${price}&discount=${discount}&doctorNumber=${doctorNumber}&species=${species}&category=${category}&serviceId=${serviceId}`,
+        Data,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log(res.data);
+      setMessage('Doctor service added');
+    } catch (err) {
+      if (err.response.status === 500) {
+        setMessage('There was a problem with a server');
+      } else {
+        setMessage(err.response);
+      }
+    }
   };
 
   const redirectTo = () => {
     return redirect && <Redirect to='/' />;
+  };
+  const handleFile = (e) => {
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
   };
 
   return (
@@ -52,8 +80,16 @@ const AddVet = () => {
       <Nav />
       {redirectTo()}
       <br />
-      <Heading text='Add new Doctor' />
+      <Heading text='Add Doctor' />
       <br />
+      {message ? (
+        <div
+          class='alert alert-warning alert-dismissible fade show'
+          role='alert'
+        >
+          {message}
+        </div>
+      ) : null}
       <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='row'>
           <div className='form-group row col-md-6'>
@@ -77,7 +113,26 @@ const AddVet = () => {
               Seller Number
             </label>
             <div class='col-sm-9 controls'>
-              <p className='text-muted ml-2'>123456789</p>
+              <p className='text-muted ml-2'>9959183841</p>
+            </div>
+          </div>
+          <div className='form-group row col-md-6'>
+            <label htmlFor='' className='col-sm-12 control-label'>
+              Select files
+            </label>
+            <div className='col-sm-9 ml-2 custom-file'>
+              <input
+                className='ml-1 col-md-12 custom-file-input'
+                id='customFile'
+                type='file'
+                multiple
+                name='files'
+                onChange={handleFile}
+                required
+              />
+              <label className='custom-file-label' htmlFor='customFile'>
+                {filename}
+              </label>
             </div>
           </div>
           <div className='form-group row col-md-6'>
@@ -130,15 +185,15 @@ const AddVet = () => {
           </div>
           <div className='form-group row col-md-6'>
             <label htmlFor='' className='col-sm-12 control-label'>
-              Inventory
+              Doctor Number
             </label>
             <div class='col-sm-9 controls'>
               <input
                 className='ml-1 col-md-12'
                 type='number'
-                placeholder='Inventory'
-                name='inventory'
-                value={inventory}
+                placeholder='Doctor Number'
+                name='doctorNumber'
+                value={doctorNumber}
                 onChange={(e) => onChange(e)}
                 required
               />
@@ -177,8 +232,8 @@ const AddVet = () => {
                 required
               >
                 <option value='0'>* Select category</option>
-                <option value='Food'>Dry-Food</option>
-                <option value='Food'>Wet-Food</option>
+                <option value='Dry-Food'>Dry-Food</option>
+                <option value='Wet-Food'>Wet-Food</option>
                 <option value='PetCare'>PetCare</option>
                 <option value='Accessories'>Accessories</option>
                 <option value='Toys'>Toys</option>
@@ -188,53 +243,22 @@ const AddVet = () => {
           </div>
           <div className='form-group row col-md-6'>
             <label htmlFor='' className='col-sm-12 control-label'>
-              Product Id
-            </label>
-            <div class='col-sm-9 controls'>
-              <input
-                className='ml-1 col-md-12'
-                type='text'
-                placeholder='productId'
-                name='productId'
-                value={productId}
-                onChange={(e) => onChange(e)}
-                required
-              />
-            </div>
-          </div>
-          <div className='form-group row col-md-6'>
-            <label htmlFor='' className='col-sm-12 control-label'>
-              Plus Points
+              Service Id
             </label>
             <div class='col-sm-9 controls'>
               <input
                 className='ml-1 col-md-12'
                 type='number'
-                placeholder='plusPoints'
-                name='plusPoints'
-                value={plusPoints}
-                onChange={(e) => onChange(e)}
-                required
-              />
-            </div>
-          </div>
-          <div className='form-group row col-md-6'>
-            <label htmlFor='' className='col-sm-12 control-label'>
-              Brand
-            </label>
-            <div class='col-sm-9 controls'>
-              <input
-                className='ml-1 col-md-12'
-                type='text'
-                placeholder='Brand'
-                name='brand'
-                value={brand}
+                placeholder='Service Id'
+                name='serviceId'
+                value={serviceId}
                 onChange={(e) => onChange(e)}
                 required
               />
             </div>
           </div>
         </div>
+
         <input type='submit' className='btn btn-warning btn-md my-1 mr-3' />
         <Link className='btn btn-light my-1 btn-md btn-dark' to='/'>
           Go Back
@@ -244,4 +268,4 @@ const AddVet = () => {
   );
 };
 
-export default AddVet;
+export default AddService;

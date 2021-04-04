@@ -9,7 +9,7 @@ import axios from 'axios';
 const ProductPanel = () => {
   const [formData, setFormData] = useState({
     title: '',
-    sellerNumber: '123456789',
+    sellerNumber: '9959183841',
     description: '',
     price: '',
     discount: '',
@@ -117,14 +117,14 @@ const ProductPanel = () => {
               Seller Number
             </label>
             <div class='col-sm-9 controls'>
-              <p className='text-muted ml-2'>123456789</p>
+              <p className='text-muted ml-2'>9959183841</p>
             </div>
           </div>
           <div className='form-group row col-md-6'>
             <label htmlFor='' className='col-sm-12 control-label'>
               Select files
             </label>
-            <div className='col-sm-9 custom-file'>
+            <div className='col-sm-9 ml-2 custom-file'>
               <input
                 className='ml-1 col-md-12 custom-file-input'
                 id='customFile'
