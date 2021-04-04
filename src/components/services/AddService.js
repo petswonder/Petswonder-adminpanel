@@ -204,7 +204,8 @@ const AddService = () => {
                 onChange={(e) => onChange(e)}
               >
                 <option value='0'>* Select Service-type</option>
-                <option value='Dog'>Doctor</option>
+                <option value='doctor'>Doctor</option>
+                <option value='petGromming'>Pet gromming</option>
               </select>
             </div>
           </div>
