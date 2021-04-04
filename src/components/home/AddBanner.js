@@ -113,9 +113,6 @@ const AddBanner = () => {
           value='Upload'
           className='btn btn-warning btn-md my-1 mr-3'
         />
-        <Link className='btn btn-light my-1 btn-md btn-dark' to='/'>
-          Go Back
-        </Link>
       </form>
     </div>
   );
