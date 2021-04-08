@@ -18,6 +18,8 @@ import AddService from './services/AddService';
 import EditService from './services/EditService';
 import AddVet from './services/AddVet';
 import EditVet from './services/EditVet';
+import AddGuide from './guide/AddGuide';
+import EditGuide from './guide/EditGuide';
 const Routings = () => {
   return (
     <>
@@ -37,6 +39,8 @@ const Routings = () => {
         <Route exact path='/shopping/order/:orderId' component={ViewOrder} />
         <Route path='/shopping/addproduct' component={ProductPanel} />
         <Route path='/shopping/editproduct' component={EditProduct} />
+        <Route path='/guide' component={AddGuide} />
+        <Route path='/editguide' component={EditGuide} />
       </BrowserRouter>
     </>
   );

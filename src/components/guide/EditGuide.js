@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import '../App.css';
 import Heading from '../Heading';
-import Nav from '../navbars/ServiceNav';
+import Nav from '../navbars/GuideNav';
 import axios from 'axios';
 
 const DeleteBanner = () => {
   const [id, setId] = useState('');
   const [message, setMessage] = useState('');
-  const [doctors, setDoctors] = useState([]);
+  const [guides, setGuides] = useState([]);
 
   const [redirect, setRediect] = useState(false);
 
@@ -16,20 +16,20 @@ const DeleteBanner = () => {
     setId(e.target.value);
   };
   useEffect(() => {
-    getDoctors();
-  }, [doctors]);
+    getGuides();
+  }, [guides]);
 
   //Get all banners
-  const getDoctors = async (e) => {
+  const getGuides = async (e) => {
     try {
       const res = await axios.post(
-        'https://petswonder.co.in/petswonder/api/doctor/getAllDoctors'
+        'https://petswonder.co.in/petswonder/api/petsGuide/getAllPetsGuide'
       );
       console.log(res.data);
-      setDoctors(res.data);
+      setGuides(res.data);
     } catch (err) {
       if (err.response.status === 500) {
-        setMessage('There was a problem with a server in getting all banners');
+        setMessage('There was a problem with a server in getting all Guides');
       } else {
         setMessage(err.response);
       }
@@ -41,10 +41,10 @@ const DeleteBanner = () => {
 
     try {
       const res = await axios.post(
-        `https://petswonder.co.in/petswonder/api/doctor/delete?id=${id}`
+        `https://petswonder.co.in/petswonder/api/petsGuide/delete?id=${id}`
       );
       console.log(res.data);
-      setMessage('Doctor service deleted');
+      setMessage('Guide was deleted');
       setId('');
     } catch (err) {
       if (err.response.status === 500) {
@@ -64,7 +64,7 @@ const DeleteBanner = () => {
       <Nav />
       {redirectTo()}
       <br />
-      <Heading text='Delete Doctor service' />
+      <Heading text='Delete a Guide' />
       <br />
       {message ? (
         <div
@@ -76,13 +76,12 @@ const DeleteBanner = () => {
       ) : null}
       <div className='row'>
         <div className='col-12'>
-          <h5>All doctor services</h5>
-          {doctors.map((doctor) => (
+          <h5>All Guides</h5>
+          {guides.map((guide) => (
             <ul>
-              <li>ID: {doctor.id}</li>
-              <li>Service-ID: {doctor.serviceId}</li>
-              <li>Title: {doctor.title}</li>
-              <li>Description: {doctor.description}</li>
+              <li>ID: {guide.id}</li>
+              <li>Title: {guide.title}</li>
+              <li>Description: {guide.description}</li>
             </ul>
           ))}
         </div>
