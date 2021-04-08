@@ -16,11 +16,11 @@ const DeleteBanner = () => {
     setId(e.target.value);
   };
   useEffect(() => {
-    getBanners();
-  }, []);
+    getDoctors();
+  }, [doctors]);
 
   //Get all banners
-  const getBanners = async (e) => {
+  const getDoctors = async (e) => {
     try {
       const res = await axios.post(
         'https://petswonder.co.in/petswonder/api/doctor/getAllDoctors'
@@ -41,10 +41,11 @@ const DeleteBanner = () => {
 
     try {
       const res = await axios.post(
-        `https://petswonder.co.in/petswonder/api/deleteBanner?id=${id}`
+        `https://petswonder.co.in/petswonder/api/doctor/delete?id=${id}`
       );
       console.log(res.data);
-      setMessage('Banner deleted');
+      setMessage('Doctor service deleted');
+      setId('');
     } catch (err) {
       if (err.response.status === 500) {
         setMessage('There was a problem with a server');
@@ -78,6 +79,7 @@ const DeleteBanner = () => {
           <h5>All doctor services</h5>
           {doctors.map((doctor) => (
             <ul>
+              <li>ID: {doctor.id}</li>
               <li>Service-ID: {doctor.serviceId}</li>
               <li>title: {doctor.title}</li>
             </ul>
