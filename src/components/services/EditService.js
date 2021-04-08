@@ -63,7 +63,7 @@ const DeleteService = () => {
       <Nav />
       {redirectTo()}
       <br />
-      <Heading text='Delete Banner' />
+      <Heading text='Delete Service' />
       <br />
       {message ? (
         <div
