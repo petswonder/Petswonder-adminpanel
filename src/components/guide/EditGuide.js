@@ -107,7 +107,7 @@ const DeleteBanner = () => {
         <input
           type='submit'
           value='Delete'
-          className='btn btn-danger btn-md my-1 mr-3'
+          className='btn btn-danger  btn-md my-1 mr-3'
         />
         <Link className='btn btn-light my-1 btn-md btn-dark' to='/'>
           Go Back

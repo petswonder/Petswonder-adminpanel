@@ -236,9 +236,11 @@ const ProductPanel = () => {
                 required
               >
                 <option value='0'>* Select category</option>
-                <option value='Dry-Food'>Dry-Food</option>
-                <option value='Wet-Food'>Wet-Food</option>
-                <option value='PetCare'>PetCare</option>
+                <option value='Dry-food'>Dry-Food</option>
+                <option value='Wet-food'>Wet-Food</option>
+                <option value='Treats&snacks'>Treats&snacks</option>
+                <option value='Clothing'>Clothing</option>
+                <option value='Grooming'>Grooming</option>
                 <option value='Accessories'>Accessories</option>
                 <option value='Toys'>Toys</option>
                 <option value='Gifts'>Gifts</option>

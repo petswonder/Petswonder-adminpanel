@@ -380,7 +380,7 @@ const EditProduct = () => {
           <input type='submit' className='btn btn-warning btn-md my-1 mr-3' />
           <button
             onClick={(e) => deleteDetails(e)}
-            className='btn btn-warning my-1 btn-md btn-danger'
+            className='btn btn-warning my-1 mx-3 btn-md btn-danger'
             to='/'
           >
             Delete Product
