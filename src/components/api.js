@@ -32,6 +32,21 @@ export const getOrders = () => {
     });
 };
 
+export const deleteOrder = (id) => {
+  return fetch(
+    `https://petswonder.co.in/petswonder/api/saveOrder/deleteOrder?id=${id}`,
+    {
+      method: 'POST',
+    }
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const updateStats = (id, stats) => {
   console.log(stats);
   return fetch(
