@@ -5,6 +5,7 @@ import { deleteOrder } from './api';
 import { Redirect } from 'react-router';
 
 const Userview = ({ location }) => {
+  const [redirect, setRedirect] = useState(false);
   const { state } = location;
   const {
     orderedBy,
@@ -34,8 +35,12 @@ const Userview = ({ location }) => {
   });
 
   const handleClick = () => {
-    deleteOrder(id);
-    <Redirect to='/shopping/userorder' />;
+    deleteOrder(id)
+      .then((res) => {
+        console.log(res);
+        setRedirect(true);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -104,6 +109,7 @@ const Userview = ({ location }) => {
           </div>
         ))}
       </div>
+      {redirect && <Redirect to='/shopping' />}
     </div>
   );
 };
