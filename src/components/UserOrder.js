@@ -12,6 +12,7 @@ const UserOrder = () => {
   useEffect(() => {
     getOrders()
       .then((d) => {
+        d.reverse();
         setData(d);
         console.log(d);
       })
