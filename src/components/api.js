@@ -19,12 +19,12 @@
 
 export const getOrders = () => {
   return fetch(
-    `https://petswonder.co.in/petswonder/api/saveOrder/getOrdersDetails`,
-    {
-      method: 'POST',
-    }
-  )
+      `https://petswonder.co.in/petswonder/api/saveOrder/getOrdersDetails`, {
+        method: 'POST',
+      }
+    )
     .then((response) => {
+      console.log(response)
       return response.json();
     })
     .catch((err) => {
@@ -34,11 +34,10 @@ export const getOrders = () => {
 
 export const deleteOrder = (id) => {
   return fetch(
-    `https://petswonder.co.in/petswonder/api/saveOrder/deleteOrder?id=${id}`,
-    {
-      method: 'POST',
-    }
-  )
+      `https://petswonder.co.in/petswonder/api/saveOrder/deleteOrder?id=${id}`, {
+        method: 'POST',
+      }
+    )
     .then((response) => {
       return response.json();
     })
@@ -50,11 +49,10 @@ export const deleteOrder = (id) => {
 export const updateStats = (id, stats) => {
   console.log(stats);
   return fetch(
-    `https://petswonder.co.in/petswonder/api/saveOrder/changeOrderStatus?id=${id}&orderStatus=${stats}`,
-    {
-      method: 'POST',
-    }
-  )
+      `https://petswonder.co.in/petswonder/api/saveOrder/changeOrderStatus?id=${id}&orderStatus=${stats}`, {
+        method: 'POST',
+      }
+    )
     .then((response) => {
       return response.json();
     })
@@ -65,11 +63,10 @@ export const updateStats = (id, stats) => {
 
 export const getProductById = (id) => {
   return fetch(
-    `https://petswonder.co.in/petswonder/api/productUpload/findProductById?id=${id}`,
-    {
-      method: 'POST',
-    }
-  )
+      `https://petswonder.co.in/petswonder/api/productUpload/findProductById?id=${id}`, {
+        method: 'POST',
+      }
+    )
     .then((response) => {
       return response.json();
     })
@@ -80,15 +77,14 @@ export const getProductById = (id) => {
 
 export const editProductById = (formData) => {
   return fetch(
-    `https://petswonder.co.in/petswonder/api/productUpload/editProduct`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    }
-  )
+      `https://petswonder.co.in/petswonder/api/productUpload/editProduct`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      }
+    )
     .then((response) => {
       return response.json();
     })
@@ -99,12 +95,12 @@ export const editProductById = (formData) => {
 
 export const deleteProduct = (formData) => {
   return fetch(`https://petswonder.co.in/petswonder/api/productUpload/delete`, {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify(formData),
-  })
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
     .then((response) => {
       return response.json();
     })

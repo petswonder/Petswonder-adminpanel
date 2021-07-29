@@ -68,7 +68,7 @@ const DeleteBanner = () => {
       <br />
       {message ? (
         <div
-          class='alert alert-danger alert-dismissible fade show'
+          className='alert alert-danger alert-dismissible fade show'
           role='alert'
         >
           {message}

@@ -18,7 +18,8 @@ const Userview = ({ location }) => {
     address,
     productDetails,
   } = state;
-
+  console.log(state)
+  // debugger
   const {
     addressLine1,
     addressLine2,
@@ -47,26 +48,26 @@ const Userview = ({ location }) => {
     <div className='container'>
       <div className='row '>
         {console.log(state)}
-        <div class='card col-md-5 m-4'>
-          <div class='card-header font-weight-bold h4'>
+        <div className='card col-md-5 m-4'>
+          <div className='card-header font-weight-bold h4'>
             OrderedBy:{orderedBy}
           </div>
-          <ul class='list-group list-group-flush'>
-            <li class='list-group-item'>
-              Total Price:{productDetails[0].priceAfterDiscount}
+          <ul className='list-group list-group-flush'>
+            <li className='list-group-item'>
+              {/* Total Price:{productDetails[0].priceAfterDiscount} */}
             </li>
-            <li class='list-group-item'>Delivery Charge:{deliveryCharge}</li>
-            <li class='list-group-item'>Payment status:{paymentStatus}</li>
-            <li class='list-group-item'>Payment type:{paymentType}</li>
-            <li class='list-group-item'>Ordered date:{d}</li>
-            <li class='list-group-item'>Ordered id:{id}</li>
+            <li className='list-group-item'>Delivery Charge:{deliveryCharge}</li>
+            <li className='list-group-item'>Payment status:{paymentStatus}</li>
+            <li className='list-group-item'>Payment type:{paymentType}</li>
+            <li className='list-group-item'>Ordered date:{d}</li>
+            <li className='list-group-item'>Ordered id:{id}</li>
           </ul>
         </div>
         <div
-          class='card text-white col-md-5 m-4'
+          className='card text-white col-md-5 m-4'
           style={{ backgroundColor: '#E1AD01' }}
         >
-          <div class='card-header font-weight-bold h4'>Address</div>
+          <div className='card-header font-weight-bold h4'>Address</div>
           <div className='p-2 font-weight-bolder'>
             {addressLine1},
             <br />
@@ -88,19 +89,19 @@ const Userview = ({ location }) => {
       <div className='row m-2 '>
         {productDetails.map((product) => (
           <div className='col-md-4'>
-            <div class='card border-warning '>
-              <div class='card-body'>
-                <h5 class='card-title'>
+            <div className='card border-warning '>
+              <div className='card-body'>
+                <h5 className='card-title'>
                   {product.productTitle} <br /> ({product.productId})
                 </h5>
-                <ul class='list-group list-group-flush'>
-                  <li class='list-group-item'>
+                <ul className='list-group list-group-flush'>
+                  <li className='list-group-item'>
                     quantityOrdered:{product.quantityOrdered}
                   </li>
-                  <li class='list-group-item'>
+                  <li className='list-group-item'>
                     sellerNumber:{product.sellerNumber}
                   </li>
-                  <li class='list-group-item'>
+                  <li className='list-group-item'>
                     price:{product.singleItemPrice}
                   </li>
                 </ul>

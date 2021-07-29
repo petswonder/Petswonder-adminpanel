@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './nav.css';
 import LogoName from '../../images/LogoName.png';
-
+import { signout } from '../auth';
 const Nav = () => {
   return (
     <nav className='navbar navbar-expand-lg bg-nav'>
-      <a class='navbar-brand'>
+      <a className='navbar-brand'>
         <img src={LogoName} style={{ height: '40px', width: '120px' }}></img>
       </a>
       <button
@@ -33,6 +33,9 @@ const Nav = () => {
           </Link>
           <Link className='nav-link text-nav pr-4 ' to='/guide'>
             GUIDE
+          </Link>
+          <Link className='nav-link text-nav pr-4 ' to='/' onClick={() => signout()}>
+            LOGOUT
           </Link>
         </div>
       </div>

@@ -61,7 +61,7 @@ const AddBanner = () => {
       <br />
       {message ? (
         <div
-          class='alert alert-warning alert-dismissible fade show'
+          className='alert alert-warning alert-dismissible fade show'
           role='alert'
         >
           {message}
@@ -92,7 +92,7 @@ const AddBanner = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Category
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <select
                 className='ml-1 col-md-12'
                 name='category'

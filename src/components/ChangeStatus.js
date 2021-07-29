@@ -24,7 +24,7 @@ const ChangeStatus = ({ d, i }) => {
       <td>{d.paymentType}</td>
       <td>{d.paymentStatus}</td>
       <td>{d.totalPrice}</td>
-      <td id='ISINcb' class='lblCell_R' align='center'>
+      <td id='ISINcb' className='lblCell_R' align='center'>
         <select
           value={status}
           onChange={(e) => onChange(e)}
@@ -40,7 +40,7 @@ const ChangeStatus = ({ d, i }) => {
           className='view'
           to={{ pathname: `/shopping/userorders/${d.id}`, state: d }}
         >
-          <button type='button' class='btn btn-info'>
+          <button type='button' className='btn btn-info'>
             View
           </button>
         </Link>

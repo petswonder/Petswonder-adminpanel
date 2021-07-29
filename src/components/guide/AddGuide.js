@@ -64,7 +64,7 @@ const AddService = () => {
       <br />
       {message ? (
         <div
-          class='alert alert-warning alert-dismissible fade show'
+          className='alert alert-warning alert-dismissible fade show'
           role='alert'
         >
           {message}
@@ -76,7 +76,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Title
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <input
                 className='ml-1 col-md-12'
                 type='text'
@@ -112,7 +112,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Description
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <input
                 className='ml-1 col-md-12'
                 type='text'

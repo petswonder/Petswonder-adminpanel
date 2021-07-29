@@ -84,7 +84,7 @@ const AddService = () => {
       <br />
       {message ? (
         <div
-          class='alert alert-warning alert-dismissible fade show'
+          className='alert alert-warning alert-dismissible fade show'
           role='alert'
         >
           {message}
@@ -96,7 +96,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Title
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <input
                 className='ml-1 col-md-12'
                 type='text'
@@ -112,7 +112,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Seller Number
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <p className='text-muted ml-2'>9959183841</p>
             </div>
           </div>
@@ -139,7 +139,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Description
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <input
                 className='ml-1 col-md-12'
                 type='text'
@@ -155,7 +155,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Price
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <input
                 className='ml-1 col-md-12'
                 type='number'
@@ -171,7 +171,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Discount
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <input
                 className='ml-1 col-md-12'
                 type='number'
@@ -187,7 +187,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Doctor Number
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <input
                 className='ml-1 col-md-12'
                 type='number'
@@ -203,7 +203,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Species
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <select
                 className='ml-1 col-md-12'
                 name='species'
@@ -223,7 +223,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Category
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <select
                 className='ml-1 col-md-12'
                 name='category'
@@ -245,7 +245,7 @@ const AddService = () => {
             <label htmlFor='' className='col-sm-12 control-label'>
               Service Id
             </label>
-            <div class='col-sm-9 controls'>
+            <div className='col-sm-9 controls'>
               <input
                 className='ml-1 col-md-12'
                 type='number'

@@ -119,7 +119,7 @@ const EditProduct = () => {
 
   const noProduct = () => {
     return (
-      <div class='col-sm-12 controls'>
+      <div className='col-sm-12 controls'>
         <h2 className='ml-1'>No Product found with this ID</h2>
       </div>
     );
@@ -127,7 +127,7 @@ const EditProduct = () => {
 
   const showUpdated = () => {
     return (
-      <div class='alert alert-success' role='alert'>
+      <div className='alert alert-success' role='alert'>
         <strong>Succesfully Updated!!</strong>
       </div>
     );
@@ -135,7 +135,7 @@ const EditProduct = () => {
 
   const showDeleted = () => {
     return (
-      <div class='alert alert-success' role='alert'>
+      <div className='alert alert-success' role='alert'>
         <strong>Succesfully Deleted!!</strong>
       </div>
     );
@@ -154,7 +154,7 @@ const EditProduct = () => {
         <label htmlFor='' className='col-sm-12 control-label'>
           Enter Product ID:
         </label>
-        <div class='col-sm-12 controls'>
+        <div className='col-sm-12 controls'>
           <input
             className='ml-1 col-md-12'
             type='text'
@@ -182,7 +182,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Title
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <input
                   className='ml-1 col-md-12'
                   type='text'
@@ -198,7 +198,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Seller Number
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <input
                   className='ml-1 col-md-12'
                   type='number'
@@ -214,7 +214,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Description
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <input
                   className='ml-1 col-md-12'
                   type='text'
@@ -230,7 +230,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Price
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <input
                   className='ml-1 col-md-12'
                   type='number'
@@ -246,7 +246,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Discount
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <input
                   className='ml-1 col-md-12'
                   type='number'
@@ -262,7 +262,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Inventory
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <input
                   className='ml-1 col-md-12'
                   type='number'
@@ -278,7 +278,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Product Images
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <input
                   className='ml-1 col-md-12'
                   type='text'
@@ -294,7 +294,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Species: <span className='ans'>{species}</span>
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <select
                   className='ml-1 col-md-12'
                   name='species'
@@ -317,7 +317,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Category: <span className='ans '>{category}</span>
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <select
                   className='ml-1 col-md-12'
                   name='category'
@@ -340,7 +340,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Product Id
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <p className='text-muted ml-2'>{id}</p>
               </div>
             </div>
@@ -348,7 +348,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Plus Points
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <input
                   className='ml-1 col-md-12'
                   type='number'
@@ -364,7 +364,7 @@ const EditProduct = () => {
               <label htmlFor='' className='col-sm-12 control-label'>
                 Brand
               </label>
-              <div class='col-sm-9 controls'>
+              <div className='col-sm-9 controls'>
                 <input
                   className='ml-1 col-md-12'
                   type='text'

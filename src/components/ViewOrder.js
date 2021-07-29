@@ -5,8 +5,8 @@ const ViewOrder = (props) => {
         window.scrollTo(0, 0);
     },[]);
     const order=props.location.orderProps;
-    console.log(props.location.orderProps)
-
+    console.log(order)
+    
     const purchaseHistory = () =>{
         return <div className="card mb-5">
             <h3 className="card-header">Products</h3>
@@ -52,8 +52,8 @@ const ViewOrder = (props) => {
     
     return (
         <div className="container mt-3">
-            <table class="table table-bordered">
-            <thead class="thead-dark">
+            <table className="table table-bordered">
+            <thead className="thead-dark">
                 <tr>
                 <th scope="col">Order Details</th>
                 <th scope="col"></th>
